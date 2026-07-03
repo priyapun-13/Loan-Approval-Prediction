@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Approval Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<div class="header">
+    <h1>🏦 Loan Approval Predictor</h1>
+    <p>AI Powered Loan Eligibility Checker</p>
+</div>
+
+<form action="/predict" method="POST">
+
+    <div class="grid">
+
+        <input type="number" name="person_age" placeholder="Age" required>
+
+        <input type="number" name="person_income" placeholder="Annual Income" required>
+
+        <input type="number" name="person_emp_exp" placeholder="Employment Experience" required>
+
+        <input type="number" name="loan_amnt" placeholder="Loan Amount" required>
+
+        <input type="number" step="0.01" name="loan_int_rate" placeholder="Interest Rate" required>
+
+        <input type="number" step="0.01" name="loan_percent_income" placeholder="Loan Percent Income" required>
+
+        <input type="number" name="cb_person_cred_hist_length" placeholder="Credit History Length" required>
+
+        <input type="number" name="credit_score" placeholder="Credit Score" required>
+
+        <select name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+
+        <select name="education">
+            <option value="High School">High School</option>
+            <option value="Bachelor">Bachelor</option>
+            <option value="Master">Master</option>
+            <option value="Doctorate">Doctorate</option>
+        </select>
+
+        <select name="ownership">
+            <option value="RENT">Rent</option>
+            <option value="OWN">Own</option>
+            <option value="OTHER">Other</option>
+        </select>
+
+        <select name="intent">
+            <option value="PERSONAL">Personal</option>
+            <option value="MEDICAL">Medical</option>
+            <option value="EDUCATION">Education</option>
+            <option value="HOMEIMPROVEMENT">Home Improvement</option>
+            <option value="VENTURE">Ventre</option>
+        </select>
+
+        <select name="default">
+            <option value="0">No Previous Default</option>
+            <option value="1">Previous Default</option>
+        </select>
+
+    </div>
+
+    <button class="btn">
+        Predict Loan Status
+    </button>
+
+</form>
+
+{% if prediction_text %}
+<div class="result">
+    {{ prediction_text }}
+</div>
+{% endif %}
+```
+
+</div>
+
+</body>
+</html>
