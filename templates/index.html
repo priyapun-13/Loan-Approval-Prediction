@@ -1,90 +1,454 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Approval Predictor</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Loan Approval Prediction</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
 </head>
 
 <body>
 
-<div class="container">
+<div class="background"></div>
 
-```
-<div class="header">
-    <h1>🏦 Loan Approval Predictor</h1>
-    <p>AI Powered Loan Eligibility Checker</p>
-</div>
+<nav class="navbar">
 
-<form action="/predict" method="POST">
+    <div class="logo">
 
-    <div class="grid">
+        <i class="fa-solid fa-building-columns"></i>
 
-        <input type="number" name="person_age" placeholder="Age" required>
-
-        <input type="number" name="person_income" placeholder="Annual Income" required>
-
-        <input type="number" name="person_emp_exp" placeholder="Employment Experience" required>
-
-        <input type="number" name="loan_amnt" placeholder="Loan Amount" required>
-
-        <input type="number" step="0.01" name="loan_int_rate" placeholder="Interest Rate" required>
-
-        <input type="number" step="0.01" name="loan_percent_income" placeholder="Loan Percent Income" required>
-
-        <input type="number" name="cb_person_cred_hist_length" placeholder="Credit History Length" required>
-
-        <input type="number" name="credit_score" placeholder="Credit Score" required>
-
-        <select name="gender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select>
-
-        <select name="education">
-            <option value="High School">High School</option>
-            <option value="Bachelor">Bachelor</option>
-            <option value="Master">Master</option>
-            <option value="Doctorate">Doctorate</option>
-        </select>
-
-        <select name="ownership">
-            <option value="RENT">Rent</option>
-            <option value="OWN">Own</option>
-            <option value="OTHER">Other</option>
-        </select>
-
-        <select name="intent">
-            <option value="PERSONAL">Personal</option>
-            <option value="MEDICAL">Medical</option>
-            <option value="EDUCATION">Education</option>
-            <option value="HOMEIMPROVEMENT">Home Improvement</option>
-            <option value="VENTURE">Ventre</option>
-        </select>
-
-        <select name="default">
-            <option value="0">No Previous Default</option>
-            <option value="1">Previous Default</option>
-        </select>
+        <span>LoanAI</span>
 
     </div>
 
-    <button class="btn">
-        Predict Loan Status
+    <ul>
+
+        <li><a href="#">Home</a></li>
+
+        <li><a href="#predict">Prediction</a></li>
+
+        <li><a href="#">About</a></li>
+
+    </ul>
+
+</nav>
+
+<section class="hero">
+
+    <div class="hero-left">
+
+        <span class="badge">
+
+            AI Powered Prediction
+
+        </span>
+
+        <h1>
+
+            Smart Loan Approval
+            <br>
+            Prediction System
+
+        </h1>
+
+        <p>
+
+            Predict whether a customer is likely to receive
+            loan approval using Machine Learning.
+
+            Get instant results with confidence score.
+
+        </p>
+
+        <a href="#predict" class="hero-btn">
+
+            Predict Now
+
+        </a>
+
+    </div>
+
+    <div class="hero-right">
+
+        <div class="glass-card">
+
+            <i class="fa-solid fa-chart-line big-icon"></i>
+
+            <h3>Fast Decision</h3>
+
+            <p>
+
+                Real-time prediction powered
+                by Artificial Intelligence.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="stats">
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-brain"></i>
+
+        <h2>ML</h2>
+
+        <p>Machine Learning</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-bolt"></i>
+
+        <h2>Instant</h2>
+
+        <p>Prediction</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <h2>Secure</h2>
+
+        <p>Reliable Model</p>
+
+    </div>
+
+</section>
+
+<section id="predict" class="prediction-section">
+
+<div class="form-card">
+
+<h2>
+
+Loan Approval Form
+
+</h2>
+
+<p>
+
+Fill in all applicant information.
+
+</p>
+
+<form action="/predict" method="POST">
+
+<div class="grid">
+
+<div class="input-box">
+
+<label>Age</label>
+
+<input
+type="number"
+name="person_age"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Annual Income</label>
+
+<input
+type="number"
+name="person_income"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Employment Experience</label>
+
+<input
+type="number"
+name="person_emp_exp"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Loan Amount</label>
+
+<input
+type="number"
+name="loan_amnt"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Interest Rate</label>
+
+<input
+type="number"
+step="0.01"
+name="loan_int_rate"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Loan Percent Income</label>
+
+<input
+type="number"
+step="0.01"
+name="loan_percent_income"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Credit History Length</label>
+
+<input
+type="number"
+name="cb_person_cred_hist_length"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Credit Score</label>
+
+<input
+type="number"
+name="credit_score"
+required>
+
+</div>
+
+<div class="input-box">
+
+    <label>Gender</label>
+
+    <select name="gender" required>
+
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+
+    </select>
+
+</div>
+
+<div class="input-box">
+
+    <label>Education</label>
+
+    <select name="education" required>
+
+        <option value="">Select Education</option>
+        <option value="High School">High School</option>
+        <option value="Associate">Associate</option>
+        <option value="Bachelor">Bachelor</option>
+        <option value="Master">Master</option>
+        <option value="Doctorate">Doctorate</option>
+
+    </select>
+
+</div>
+
+<div class="input-box">
+
+    <label>Home Ownership</label>
+
+    <select name="ownership" required>
+
+        <option value="">Select</option>
+        <option value="RENT">Rent</option>
+        <option value="OWN">Own</option>
+        <option value="MORTGAGE">Mortgage</option>
+        <option value="OTHER">Other</option>
+
+    </select>
+
+</div>
+
+<div class="input-box">
+
+    <label>Loan Purpose</label>
+
+    <select name="intent" required>
+
+        <option value="">Select</option>
+        <option value="EDUCATION">Education</option>
+        <option value="MEDICAL">Medical</option>
+        <option value="PERSONAL">Personal</option>
+        <option value="VENTURE">Business Venture</option>
+        <option value="HOMEIMPROVEMENT">Home Improvement</option>
+        <option value="DEBTCONSOLIDATION">Debt Consolidation</option>
+
+    </select>
+
+</div>
+
+<div class="input-box full-width">
+
+    <label>Previous Loan Defaults</label>
+
+    <select name="default" required>
+
+        <option value="">Select</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+
+    </select>
+
+</div>
+
+</div>
+
+<div class="button-area">
+
+    <button class="predict-btn" type="submit">
+
+        <span class="btn-text">
+
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            Predict Loan Status
+
+        </span>
+
+        <span class="loader"></span>
+
     </button>
+
+</div>
 
 </form>
 
-{% if prediction_text %}
-<div class="result">
-    {{ prediction_text }}
 </div>
-{% endif %}
-```
+
+<div class="result-card">
+
+    <div class="result-header">
+
+        <i class="fa-solid fa-chart-column"></i>
+
+        <h2>Prediction Result</h2>
+
+    </div>
+
+    {% if prediction_text %}
+
+        {% if "Approved" in prediction_text %}
+
+            <div class="result success">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <h3>Loan Approved</h3>
+
+                <p>{{ prediction_text }}</p>
+
+            </div>
+
+        {% else %}
+
+            <div class="result reject">
+
+                <i class="fa-solid fa-circle-xmark"></i>
+
+                <h3>Loan Rejected</h3>
+
+                <p>{{ prediction_text }}</p>
+
+            </div>
+
+        {% endif %}
+
+    {% else %}
+
+        <div class="placeholder">
+
+            <i class="fa-solid fa-microchip"></i>
+
+            <h3>AI Prediction</h3>
+
+            <p>
+
+                Complete the application form and press
+                <strong>Predict Loan Status</strong> to see the result.
+
+            </p>
+
+        </div>
+
+    {% endif %}
 
 </div>
+
+</section>
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+
+            <h3>LoanAI</h3>
+
+            <p>
+
+                Machine Learning based Loan Approval Prediction System.
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <p>
+
+                Built using Flask • Scikit-learn • HTML • CSS • JavaScript
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 </html>
+
