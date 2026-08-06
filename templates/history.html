@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Prediction History</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='history.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>
+<i class="fa-solid fa-clock-rotate-left"></i>
+Prediction History
+</h1>
+
+<a href="{{ url_for('client_dashboard') }}" class="back">
+← Dashboard
+</a>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+
+<th>Loan Amount</th>
+
+<th>Income</th>
+
+<th>Purpose</th>
+
+<th>Prediction</th>
+
+<th>Confidence</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for app in applications %}
+
+<tr>
+
+<td>{{ app.created_at.strftime("%d %b %Y") }}</td>
+
+<td>Rs {{ app.loan_amount }}</td>
+
+<td>Rs {{ app.person_income }}</td>
+
+<td>{{ app.loan_intent }}</td>
+
+<td>
+
+{% if "APPROVED" in app.prediction.upper() %}
+
+<span class="approved">
+
+Approved
+
+</span>
+
+{% else %}
+
+<span class="rejected">
+
+Rejected
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>{{ app.confidence }}%</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</body>
+
+</html>

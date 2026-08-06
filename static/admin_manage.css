@@ -1,0 +1,419 @@
+/* ==========================
+   GOOGLE FONT
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    color:#333;
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:260px;
+    height:100vh;
+    background:linear-gradient(180deg,#1d3557,#274c77);
+    padding:30px 20px;
+    box-shadow:5px 0 20px rgba(0,0,0,.1);
+}
+
+.logo{
+    color:white;
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:45px;
+    text-align:center;
+}
+
+.sidebar a{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    text-decoration:none;
+    color:white;
+    padding:15px;
+    margin-bottom:12px;
+    border-radius:12px;
+    transition:.3s;
+    font-size:16px;
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,.18);
+}
+
+.sidebar a.active{
+    background:white;
+    color:#1d3557;
+    font-weight:600;
+}
+
+.sidebar i{
+    width:20px;
+}
+
+/* ==========================
+   MAIN
+========================== */
+
+.main{
+    margin-left:280px;
+    padding:35px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.topbar h1{
+    font-size:34px;
+    color:#1d3557;
+}
+
+.topbar p{
+    color:#777;
+    margin-top:6px;
+}
+
+/* ==========================
+   TABLE CARD
+========================== */
+
+.table-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    margin-bottom:35px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.table-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.table-header h2{
+
+    color:#1d3557;
+
+    font-size:24px;
+
+}
+
+.table-header span{
+
+    background:#1d3557;
+
+    color:white;
+
+    padding:8px 18px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+}
+
+/* ==========================
+   TABLE
+========================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#1d3557;
+
+    color:white;
+
+}
+
+thead th{
+
+    padding:15px;
+
+    text-align:left;
+
+    font-weight:500;
+
+}
+
+tbody tr{
+
+    border-bottom:1px solid #eee;
+
+    transition:.3s;
+
+}
+
+tbody tr:hover{
+
+    background:#f5f8ff;
+
+}
+
+tbody td{
+
+    padding:15px;
+
+}
+
+/* ==========================
+   BADGES
+========================== */
+
+.badge{
+
+    padding:7px 14px;
+
+    border-radius:20px;
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.admin{
+
+    background:#6f42c1;
+
+}
+
+.client{
+
+    background:#0d6efd;
+
+}
+
+.approved{
+
+    background:#28a745;
+
+    color:white;
+
+    padding:7px 15px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.rejected{
+
+    background:#dc3545;
+
+    color:white;
+
+    padding:7px 15px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+/* ==========================
+   DELETE BUTTON
+========================== */
+
+.delete-btn{
+
+    display:inline-block;
+
+    background:#dc3545;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:9px 18px;
+
+    border-radius:8px;
+
+    transition:.3s;
+
+    font-size:14px;
+
+}
+
+.delete-btn:hover{
+
+    background:#b52b3b;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================
+   SCROLLABLE TABLE
+========================== */
+
+.table-card{
+
+    overflow-x:auto;
+
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+    height:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#1d3557;
+
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#e9ecef;
+
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1000px){
+
+.sidebar{
+
+    width:80px;
+
+}
+
+.logo{
+
+    font-size:18px;
+
+}
+
+.sidebar a{
+
+    justify-content:center;
+
+}
+
+.sidebar a span{
+
+    display:none;
+
+}
+
+.main{
+
+    margin-left:100px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.main{
+
+    margin-left:0;
+
+    padding:20px;
+
+}
+
+.sidebar{
+
+    position:relative;
+
+    width:100%;
+
+    height:auto;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    padding:15px;
+
+}
+
+.logo{
+
+    display:none;
+
+}
+
+.sidebar a{
+
+    margin:0;
+
+}
+
+.topbar{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+}
+
+table{
+
+    min-width:900px;
+
+}
+
+}

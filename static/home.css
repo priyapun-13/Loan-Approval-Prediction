@@ -1,0 +1,318 @@
+/* Google Font */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#4f46e5,#6d28d9,#9333ea);
+    min-height:100vh;
+    color:#fff;
+}
+
+/* ========================= */
+/* NAVBAR */
+/* ========================= */
+
+nav{
+    width:90%;
+    margin:auto;
+    padding:25px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:700;
+    color:white;
+}
+
+.nav-buttons{
+    display:flex;
+    gap:15px;
+}
+
+.login-btn,
+.register-btn{
+    text-decoration:none;
+    color:white;
+    padding:12px 25px;
+    border-radius:50px;
+    transition:.3s;
+    font-weight:500;
+}
+
+.login-btn{
+    border:2px solid white;
+}
+
+.login-btn:hover{
+    background:white;
+    color:#6d28d9;
+}
+
+.register-btn{
+    background:white;
+    color:#6d28d9;
+    font-weight:600;
+}
+
+.register-btn:hover{
+    transform:translateY(-3px);
+}
+
+/* ========================= */
+/* HERO */
+/* ========================= */
+
+.hero{
+    width:100%;
+}
+
+.hero-content{
+    width:90%;
+    margin:40px auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:50px;
+}
+
+.left{
+    flex:1;
+}
+
+.left h1{
+    font-size:60px;
+    line-height:1.2;
+    margin-bottom:25px;
+}
+
+.left h1 span{
+    color:#FFD54F;
+}
+
+.left p{
+    font-size:18px;
+    color:#f1f1f1;
+    line-height:1.8;
+    margin-bottom:35px;
+}
+
+/* ========================= */
+/* BUTTONS */
+/* ========================= */
+
+.buttons{
+    display:flex;
+    gap:20px;
+}
+
+.start-btn,
+.outline-btn{
+    text-decoration:none;
+    padding:16px 35px;
+    border-radius:50px;
+    font-size:17px;
+    transition:.3s;
+}
+
+.start-btn{
+    background:#FFD54F;
+    color:#222;
+    font-weight:600;
+}
+
+.start-btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 30px rgba(0,0,0,.25);
+}
+
+.outline-btn{
+    border:2px solid white;
+    color:white;
+}
+
+.outline-btn:hover{
+    background:white;
+    color:#6d28d9;
+}
+
+/* ========================= */
+/* RIGHT CARD */
+/* ========================= */
+
+.right{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+.card{
+    width:420px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:25px;
+    padding:35px;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.card h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.item{
+    background:rgba(255,255,255,.12);
+    margin:15px 0;
+    padding:15px;
+    border-radius:15px;
+    transition:.3s;
+}
+
+.item:hover{
+    background:rgba(255,255,255,.25);
+    transform:translateX(8px);
+}
+
+/* ========================= */
+/* FEATURES */
+/* ========================= */
+
+.features{
+    width:90%;
+    margin:80px auto;
+    text-align:center;
+}
+
+.features h2{
+    font-size:40px;
+    margin-bottom:50px;
+}
+
+.feature-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.feature-box{
+    background:white;
+    color:#222;
+    border-radius:20px;
+    padding:40px 25px;
+    transition:.35s;
+    box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+
+.feature-box:hover{
+    transform:translateY(-12px);
+}
+
+.feature-box i{
+    font-size:45px;
+    color:#6d28d9;
+    margin-bottom:20px;
+}
+
+.feature-box h3{
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+.feature-box p{
+    color:#555;
+    line-height:1.7;
+}
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
+footer{
+    text-align:center;
+    padding:40px 20px;
+    background:rgba(0,0,0,.15);
+    margin-top:80px;
+}
+
+footer h3{
+    margin-bottom:10px;
+}
+
+footer p{
+    color:#ddd;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:992px){
+
+.hero-content{
+    flex-direction:column;
+    text-align:center;
+}
+
+.left h1{
+    font-size:45px;
+}
+
+.buttons{
+    justify-content:center;
+}
+
+.card{
+    width:100%;
+    max-width:450px;
+}
+
+}
+
+@media(max-width:768px){
+
+nav{
+    flex-direction:column;
+    gap:20px;
+}
+
+.left h1{
+    font-size:36px;
+}
+
+.features h2{
+    font-size:32px;
+}
+
+}
+
+@media(max-width:500px){
+
+.left h1{
+    font-size:30px;
+}
+
+.buttons{
+    flex-direction:column;
+}
+
+.start-btn,
+.outline-btn{
+    width:100%;
+}
+
+.card{
+    padding:25px;
+}
+
+.logo{
+    font-size:24px;
+}
+
+}

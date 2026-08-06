@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Loan Approval Prediction</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-building-columns"></i>
+
+        <span>LoanAI</span>
+
+    </div>
+
+    <ul>
+
+        <li><a href="#">Home</a></li>
+
+        <li><a href="#predict">Prediction</a></li>
+
+        <li><a href="#">About</a></li>
+
+    </ul>
+
+</nav>
+
+<section class="hero">
+
+    <div class="hero-left">
+
+        <span class="badge">
+
+            AI Powered Prediction
+
+        </span>
+
+        <h1>
+
+            Smart Loan Approval
+            <br>
+            Prediction System
+
+        </h1>
+
+        <p>
+
+            Predict whether a customer is likely to receive
+            loan approval using Machine Learning.
+
+            Get instant results with confidence score.
+
+        </p>
+
+        <a href="#predict" class="hero-btn">
+
+            Predict Now
+
+        </a>
+
+    </div>
+
+    <div class="hero-right">
+
+        <div class="glass-card">
+
+            <i class="fa-solid fa-chart-line big-icon"></i>
+
+            <h3>Fast Decision</h3>
+
+            <p>
+
+                Real-time prediction powered
+                by Artificial Intelligence.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="stats">
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-brain"></i>
+
+        <h2>ML</h2>
+
+        <p>Machine Learning</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-bolt"></i>
+
+        <h2>Instant</h2>
+
+        <p>Prediction</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <h2>Secure</h2>
+
+        <p>Reliable Model</p>
+
+    </div>
+
+</section>
+
+<section id="predict" class="prediction-section">
+
+<div class="form-card">
+
+<h2>
+
+Loan Approval Form
+
+</h2>
+
+<p>
+
+Fill in all applicant information.
+
+</p>
+
+<form action="/predict" method="POST">
+
+<div class="grid">
+
+    <!-- Age -->
+    <div class="input-box">
+        <label>Age</label>
+        <input type="number"
+               name="person_age"
+               value="{{ application.person_age if application else '' }}"
+               required>
+    </div>
+
+    <!-- Annual Income -->
+    <div class="input-box">
+        <label>Annual Income</label>
+        <input type="number"
+               name="person_income"
+               value="{{ application.person_income if application else '' }}"
+               required>
+    </div>
+
+    <!-- Employment Experience -->
+    <div class="input-box">
+        <label>Employment Experience</label>
+        <input type="number"
+               name="person_emp_exp"
+               value="{{ application.person_emp_exp if application else '' }}"
+               required>
+    </div>
+
+    <!-- Loan Amount -->
+    <div class="input-box">
+        <label>Loan Amount</label>
+        <input type="number"
+               name="loan_amnt"
+               value="{{ application.loan_amount if application else '' }}"
+               required>
+    </div>
+
+    <!-- Interest Rate -->
+    <div class="input-box">
+        <label>Interest Rate</label>
+        <input type="number"
+               step="0.01"
+               name="loan_int_rate"
+               value="{{ application.interest_rate if application else '' }}"
+               required>
+    </div>
+
+    <!-- Loan Percent Income -->
+    <div class="input-box">
+        <label>Loan Percent Income</label>
+        <input type="number"
+               step="0.01"
+               name="loan_percent_income"
+               value="{{ application.loan_percent_income if application else '' }}"
+               required>
+    </div>
+
+    <!-- Credit History Length -->
+    <div class="input-box">
+        <label>Credit History Length</label>
+        <input type="number"
+               name="cb_person_cred_hist_length"
+               value="{{ application.credit_history_length if application else '' }}"
+               required>
+    </div>
+
+    <!-- Credit Score -->
+    <div class="input-box">
+        <label>Credit Score</label>
+        <input type="number"
+               name="credit_score"
+               value="{{ application.credit_score if application else '' }}"
+               required>
+    </div>
+
+    <!-- Gender -->
+    <div class="input-box">
+        <label>Gender</label>
+
+        <select name="gender" required>
+
+            <option value="">Select Gender</option>
+
+            <option value="male"
+                {% if application and application.gender=="male" %}selected{% endif %}>
+                Male
+            </option>
+
+            <option value="female"
+                {% if application and application.gender=="female" %}selected{% endif %}>
+                Female
+            </option>
+
+        </select>
+    </div>
+
+    <!-- Education -->
+    <div class="input-box">
+
+        <label>Education</label>
+
+        <select name="education" required>
+
+            <option value="">Select Education</option>
+
+            <option value="High School"
+            {% if application and application.education=="High School" %}selected{% endif %}>
+                High School
+            </option>
+
+            <option value="Associate"
+            {% if application and application.education=="Associate" %}selected{% endif %}>
+                Associate
+            </option>
+
+            <option value="Bachelor"
+            {% if application and application.education=="Bachelor" %}selected{% endif %}>
+                Bachelor
+            </option>
+
+            <option value="Master"
+            {% if application and application.education=="Master" %}selected{% endif %}>
+                Master
+            </option>
+
+            <option value="Doctorate"
+            {% if application and application.education=="Doctorate" %}selected{% endif %}>
+                Doctorate
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- Home Ownership -->
+    <div class="input-box">
+
+        <label>Home Ownership</label>
+
+        <select name="ownership" required>
+
+            <option value="">Select</option>
+
+            <option value="RENT"
+            {% if application and application.home_ownership=="RENT" %}selected{% endif %}>
+                Rent
+            </option>
+
+            <option value="OWN"
+            {% if application and application.home_ownership=="OWN" %}selected{% endif %}>
+                Own
+            </option>
+
+            <option value="MORTGAGE"
+            {% if application and application.home_ownership=="MORTGAGE" %}selected{% endif %}>
+                Mortgage
+            </option>
+
+            <option value="OTHER"
+            {% if application and application.home_ownership=="OTHER" %}selected{% endif %}>
+                Other
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- Loan Purpose -->
+    <div class="input-box">
+
+        <label>Loan Purpose</label>
+
+        <select name="intent" required>
+
+            <option value="">Select</option>
+
+            <option value="EDUCATION"
+            {% if application and application.loan_intent=="EDUCATION" %}selected{% endif %}>
+                Education
+            </option>
+
+            <option value="MEDICAL"
+            {% if application and application.loan_intent=="MEDICAL" %}selected{% endif %}>
+                Medical
+            </option>
+
+            <option value="PERSONAL"
+            {% if application and application.loan_intent=="PERSONAL" %}selected{% endif %}>
+                Personal
+            </option>
+
+            <option value="VENTURE"
+            {% if application and application.loan_intent=="VENTURE" %}selected{% endif %}>
+                Business Venture
+            </option>
+
+            <option value="HOMEIMPROVEMENT"
+            {% if application and application.loan_intent=="HOMEIMPROVEMENT" %}selected{% endif %}>
+                Home Improvement
+            </option>
+
+            <option value="DEBTCONSOLIDATION"
+            {% if application and application.loan_intent=="DEBTCONSOLIDATION" %}selected{% endif %}>
+                Debt Consolidation
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- Previous Loan Defaults -->
+    <div class="input-box full-width">
+
+        <label>Previous Loan Defaults</label>
+
+        <select name="default" required>
+
+            <option value="">Select</option>
+
+            <option value="1"
+            {% if application and application.previous_default=="1" %}selected{% endif %}>
+                Yes
+            </option>
+
+            <option value="0"
+            {% if application and application.previous_default=="0" %}selected{% endif %}>
+                No
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+<div class="button-area">
+
+    <button class="predict-btn" type="submit">
+
+        <span class="btn-text">
+
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            {% if application %}
+                Update & Predict
+            {% else %}
+                Predict Loan Status
+            {% endif %}
+
+        </span>
+
+        <span class="loader"></span>
+
+    </button>
+
+</div>
+
+</form>
+
+</div>
+
+<div class="dashboard-grid">
+
+    <a href="{{ url_for('history') }}" class="dashboard-card history-card">
+
+        <div class="icon">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+        </div>
+
+        <div class="content">
+
+            <h3>Prediction History</h3>
+
+            <p>
+                View all your previous loan applications, predictions,
+                confidence scores and submission dates.
+            </p>
+
+            <span class="btn">
+                View History
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
+
+        </div>
+
+    </a>
+
+</div>
+
+<a href="{{ url_for('update_application') }}" class="dashboard-card update-card">
+
+    <div class="icon">
+        <i class="fa-solid fa-file-pen"></i>
+    </div>
+
+    <div class="content">
+
+        <h3>Update Application</h3>
+
+        <p>
+            Modify your previously submitted loan application
+            and generate a new prediction.
+        </p>
+
+        <span class="btn">
+            Update Now
+            <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </div>
+
+
+</a>
+    
+
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

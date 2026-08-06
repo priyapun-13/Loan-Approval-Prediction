@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Management</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_manage.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        🏦 LoanPredict AI
+    </div>
+
+    <a href="{{ url_for('admin_dashboard') }}">
+        <i class="fas fa-chart-line"></i>
+        Dashboard
+    </a>
+
+    <a href="{{ url_for('admin_management') }}" class="active">
+        <i class="fas fa-users-cog"></i>
+        Manage System
+    </a>
+
+    <a href="{{ url_for('logout') }}">
+        <i class="fas fa-sign-out-alt"></i>
+        Logout
+    </a>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+    <div class="topbar">
+
+        <div>
+
+            <h1>Admin Management</h1>
+
+            <p>Manage registered users and loan applications.</p>
+
+        </div>
+
+    </div>
+
+    <!-- USERS -->
+
+    <div class="table-card">
+
+        <div class="table-header">
+
+    <h2>
+        <i class="fas fa-users"></i>
+        Registered Users
+    </h2>
+
+    <span>{{ total_users }} Users</span>
+
+</div>
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Delete</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for user in users %}
+
+            <tr>
+
+                <td>{{ user.name }}</td>
+
+                <td>{{ user.email }}</td>
+
+                <td>
+
+                    {% if user.role=="admin" %}
+                        <span class="badge admin">Admin</span>
+                    {% else %}
+                        <span class="badge client">Client</span>
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    <a href="/delete_user/{{ user._id }}" class="delete-btn">
+
+                        Delete
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- APPLICATIONS -->
+
+    <div class="table-card">
+
+        <div class="table-header">
+
+    <h2>
+        <i class="fas fa-file-signature"></i>
+        Loan Applications
+    </h2>
+
+    <span>{{ total_applications }} Applications</span>
+
+</div>
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>Name</th>
+
+                <th>Email</th>
+
+                <th>Loan</th>
+
+                <th>Income</th>
+
+                <th>Status</th>
+
+                <th>Confidence</th>
+
+                <th>Date</th>
+
+                <th>Delete</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for app in applications %}
+
+            <tr>
+
+                <td>{{ app.user_name }}</td>
+
+                <td>{{ app.user_email }}</td>
+
+                <td>Rs. {{ app.loan_amount }}</td>
+
+                <td>Rs. {{ app.person_income }}</td>
+
+                <td>
+
+                    {% if "APPROVED" in app.prediction %}
+
+                        <span class="approved">Approved</span>
+
+                    {% else %}
+
+                        <span class="rejected">Rejected</span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>{{ app.confidence }}%</td>
+
+                <td>{{ app.created_at.strftime("%d-%m-%Y") if app.created_at else "" }}</td>
+
+                <td>
+
+                    <a href="/delete_application/{{ app._id }}" class="delete-btn">
+
+                        Delete
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

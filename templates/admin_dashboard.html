@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | LoanPredict AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        🏦 LoanPredict AI
+    </div>
+
+    <ul>
+
+        <li class="active">
+            <a href="{{ url_for('admin_dashboard') }}">
+                <i class="fas fa-home"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('admin_management') }}">
+                <i class="fas fa-users-cog"></i>
+                Manage System
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('logout') }}">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+    <!-- Top Bar -->
+
+    <div class="topbar">
+
+        <div>
+            <h1>Welcome Admin 👋</h1>
+            <p>Monitor users, applications and loan predictions.</p>
+        </div>
+
+        <div class="profile">
+            <i class="fas fa-user-shield"></i>
+            Admin
+        </div>
+
+    </div>
+
+    <!-- Statistics -->
+
+    <div class="cards">
+
+        <div class="card blue">
+            <i class="fas fa-users"></i>
+            <h2>{{ total_users }}</h2>
+            <p>Total Users</p>
+        </div>
+
+        <div class="card green">
+            <i class="fas fa-file-alt"></i>
+            <h2>{{ total_applications }}</h2>
+            <p>Applications</p>
+        </div>
+
+        <div class="card purple">
+            <i class="fas fa-check-circle"></i>
+            <h2>{{ approved }}</h2>
+            <p>Approved Loans</p>
+        </div>
+
+        <div class="card red">
+            <i class="fas fa-times-circle"></i>
+            <h2>{{ rejected }}</h2>
+            <p>Rejected Loans</p>
+        </div>
+
+    </div>
+
+    <!-- Recent Applications -->
+
+    <div class="table-card">
+
+        <div class="table-header">
+
+            <h2>Recent Loan Applications</h2>
+
+            <a href="{{ url_for('admin_management') }}">
+                View All
+            </a>
+
+        </div>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Loan Amount</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for app in recent %}
+
+                <tr>
+
+                    <td>{{ app.user_name }}</td>
+
+                    <td>{{ app.user_email }}</td>
+
+                    <td>₹ {{ app.loan_amount }}</td>
+
+                    <td>
+
+                        {% if "APPROVED" in app.prediction.upper() %}
+
+                            <span class="approved">
+                                Approved
+                            </span>
+
+                        {% else %}
+
+                            <span class="rejected">
+                                Rejected
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- Quick Actions -->
+
+    <div class="cards">
+
+        <a href="{{ url_for('admin_management') }}" class="card blue">
+
+            <i class="fas fa-users-cog"></i>
+
+            <h3>Manage Users & Applications</h3>
+
+            <p>
+                View all registered users, loan applications and delete records.
+            </p>
+
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="card red">
+
+            <i class="fas fa-power-off"></i>
+
+            <h3>Logout</h3>
+
+            <p>
+                Sign out from the admin panel.
+            </p>
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<nav class="navbar">
+
+    <div class="logo">
+        <i class="fa-solid fa-building-columns"></i>
+        <span>LoanAI</span>
+    </div>
+
+</nav>
+
+<section class="prediction-section">
+
+    <div class="result-card" style="max-width:700px;margin:auto;">
+
+        <div class="result-header">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            <h2>Loan Prediction Result</h2>
+
+        </div>
+
+        {% if "APPROVED" in prediction_text.upper() %}
+
+        <div class="result success">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <h1>Loan Approved</h1>
+
+            <p>{{ prediction_text }}</p>
+
+        </div>
+
+        {% else %}
+
+        <div class="result reject">
+
+            <i class="fa-solid fa-circle-xmark"></i>
+
+            <h1>Loan Rejected</h1>
+
+            <p>{{ prediction_text }}</p>
+
+        </div>
+
+        {% endif %}
+
+        <hr style="margin:30px 0;">
+
+        <div class="summary">
+
+            <h3>Application Summary</h3>
+
+            <table class="summary-table">
+
+                <tr>
+                    <td><strong>Name</strong></td>
+                    <td>{{ session.name }}</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Email</strong></td>
+                    <td>{{ session.email }}</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Loan Amount</strong></td>
+                    <td>Rs. {{ loan_amount }}</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Annual Income</strong></td>
+                    <td>Rs. {{ income }}</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Credit Score</strong></td>
+                    <td>{{ credit_score }}</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Interest Rate</strong></td>
+                    <td>{{ interest_rate }}%</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Confidence</strong></td>
+                    <td>{{ confidence }}%</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <div style="margin-top:40px;text-align:center;">
+
+            <a href="{{ url_for('client_dashboard') }}" class="predict-btn">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Dashboard
+
+            </a>
+
+            <a href="{{ url_for('client_dashboard') }}"
+               class="predict-btn"
+               style="margin-left:15px;background:#2ecc71;">
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Predict Again
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

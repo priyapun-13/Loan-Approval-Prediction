@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Update Profile | LoanPredict AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='auth.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>
+            <i class="fa-solid fa-user-pen"></i>
+            Update Profile
+        </h1>
+
+        <p>Edit your account information</p>
+
+        {% if message %}
+        <div class="message">
+            {{ message }}
+        </div>
+        {% endif %}
+
+        <form action="{{ url_for('update_profile') }}" method="POST">
+
+            <input
+                type="text"
+                name="name"
+                value="{{ user.name }}"
+                placeholder="Full Name"
+                required>
+
+            <input
+                type="email"
+                name="email"
+                value="{{ user.email }}"
+                placeholder="Email Address"
+                required>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="New Password (leave blank if unchanged)">
+
+            <input
+                type="password"
+                name="confirm_password"
+                placeholder="Confirm Password">
+
+            <button type="submit">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Save Changes
+            </button>
+
+        </form>
+
+        <p class="bottom">
+
+            <a href="{{ url_for('client_dashboard') }}">
+                ← Back to Dashboard
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>
